@@ -36,7 +36,7 @@ public class MAOFlareAndParaMixerBehaviour : PlayableBehaviour
         if(!m_FirstFrameHappened)
         {
             m_DefaultFlareInstensity = m_TrackBinding.flareInstensity.value;
-            m_DefaultFlareInteration = m_TrackBinding.flareInteration.value;
+            m_DefaultFlareInteration = m_TrackBinding.flareIteration.value;
             m_DefaultInnerColor = m_TrackBinding.innerColor.value;
             m_DefaultOuterColor = m_TrackBinding.outerColor.value;
             m_DefaultColorMixedMidPoint = m_TrackBinding.colorMixedMidPoint.value;
@@ -100,7 +100,7 @@ public class MAOFlareAndParaMixerBehaviour : PlayableBehaviour
                 currentInputs++;
         }
         m_TrackBinding.flareInstensity.value = blendedFlareInstensity + m_DefaultFlareInstensity * (1f-totalWeight);
-        m_TrackBinding.flareInteration.value = Mathf.RoundToInt(blendedFlareInteration + m_DefaultFlareInteration * (1f-totalWeight));
+        m_TrackBinding.flareIteration.value = Mathf.RoundToInt(blendedFlareInteration + m_DefaultFlareInteration * (1f-totalWeight));
         m_TrackBinding.innerColor.value = blendedInnerColor + m_DefaultInnerColor * (1f-totalWeight);
         m_TrackBinding.outerColor.value = blendedOuterColor + m_DefaultOuterColor * (1f-totalWeight);
         m_TrackBinding.colorMixedMidPoint.value = blendedColorMixedMidPoint + m_DefaultColorMixedMidPoint * (1f-totalWeight);
@@ -124,7 +124,7 @@ public class MAOFlareAndParaMixerBehaviour : PlayableBehaviour
             return;
 
         m_TrackBinding.flareInstensity.value = m_DefaultFlareInstensity;
-        m_TrackBinding.flareInteration.value = m_DefaultFlareInteration;
+        m_TrackBinding.flareIteration.value = m_DefaultFlareInteration;
         m_TrackBinding.innerColor.value = m_DefaultInnerColor;
         m_TrackBinding.outerColor.value = m_DefaultOuterColor;
         m_TrackBinding.colorMixedMidPoint.value = m_DefaultColorMixedMidPoint;

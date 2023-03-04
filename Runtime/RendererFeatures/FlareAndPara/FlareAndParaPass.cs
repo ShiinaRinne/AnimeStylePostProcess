@@ -48,16 +48,13 @@ namespace AnimeStylePostProcess
 
            
             _material.SetFloat("_FlareIntensity", flareParaVolume.flareInstensity.value);
-            _material.SetFloat("_FlareInteration", flareParaVolume.flareInteration.value);
+            _material.SetFloat("_FlareInteration", flareParaVolume.flareIteration.value);
             _material.SetColor("_FlareInnerColor", flareParaVolume.innerColor.value);
             _material.SetColor("_FlareOuterColor", flareParaVolume.outerColor.value);
             _material.SetFloat("_ColorMixedMidPoint", flareParaVolume.colorMixedMidPoint.value);
             _material.SetFloat("_ColorMixedSoftness", flareParaVolume.colorMixedSoftness.value);
             _material.SetFloat("_FlareRange", flareParaVolume.flareRange.value);
             
-            _material.SetVector("_ControlPoint", flareParaVolume.controlPoint.value);
-            _material.SetVector("_StartPosition", flareParaVolume.startPosition.value);
-            _material.SetVector("_EndPosition", flareParaVolume.endPosition.value);
 
             var rotation = flareParaVolume.extraRotation.value;
             if (flareParaVolume.rotateWithMainLight.value)
