@@ -54,6 +54,7 @@ namespace AnimeStylePostProcess
             _material.SetFloat("_ColorMixedMidPoint", flareParaVolume.colorMixedMidPoint.value);
             _material.SetFloat("_ColorMixedSoftness", flareParaVolume.colorMixedSoftness.value);
             _material.SetFloat("_FlareRange", flareParaVolume.flareRange.value);
+            _material.SetFloat("_Desaturate", flareParaVolume.desaturate.value);
             
 
             var rotation = flareParaVolume.extraRotation.value;

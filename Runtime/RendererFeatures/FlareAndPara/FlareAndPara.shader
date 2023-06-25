@@ -13,6 +13,7 @@ Shader "Hidden/AnimeStylePostProcess/FlareAndPara"
     half _ColorMixedSoftness;
 
     float _FlareRange;
+    float _Desaturate;
     half _RotateWithMainLightAngle;
 
     half _ParaIntensity;
@@ -31,6 +32,18 @@ Shader "Hidden/AnimeStylePostProcess/FlareAndPara"
         half3 color : TEXCOORD0;
         half4 vary : TEXCOORD1;
     };
+
+    half3 GenericDesaturate(half3 color, half factor = 1)
+    {
+        return half3(lerp(color, Luminance(color), factor));
+    }
+
+    // https://www.shadertoy.com/view/lsdXDH
+    half3 PhotoshopDesaturate(half3 color, half factor = 1)
+    {
+        float bw = (min(color.r, min(color.g, color.b)) + max(color.r, max(color.g, color.b))) * 0.5;
+        return half3(lerp(color, half3(bw, bw, bw), factor));
+    }
 
     Varyings FlareVert(Attributes input)
     {
@@ -57,12 +70,15 @@ Shader "Hidden/AnimeStylePostProcess/FlareAndPara"
     half4 FlareFrag(Varyings input) : SV_Target
     {
         Light mainLight = GetMainLight();
-        float3 lightColor = mainLight.color * 0.8;
+        float3 lightColor = GenericDesaturate(mainLight.color,_Desaturate);
+        // float3 lightColor = PhotoshopDesaturate(mainLight.color, _Desaturate); 
+        
         half smoothColorSplit = smoothstep(1 - _ColorMixedMidPoint - _ColorMixedSoftness,
                                            1 - _ColorMixedMidPoint + _ColorMixedSoftness, input.vary.x);
         half3 flare = lerp(_FlareOuterColor, _FlareInnerColor, smoothColorSplit) * lightColor * _FlareIntensity * input.vary.x;
+        // flare = lightColor;
 
-        return half4(pow(saturate(flare), _FlareInteration), 1);
+        return half4(pow(flare, _FlareInteration), 1);
     }
 
     Varyings ParaVert(Attributes input)

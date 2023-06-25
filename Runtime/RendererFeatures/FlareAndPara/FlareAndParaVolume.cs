@@ -14,6 +14,7 @@ public class FlareAndParaVolume : VolumeComponent, IPostProcessComponent
     public ClampedFloatParameter colorMixedSoftness = new(1,0,2);
     
     public ClampedFloatParameter flareRange = new(0, 0, 2);
+    public ClampedFloatParameter desaturate = new(0, 0, 1);
     public BoolParameter rotateWithMainLight = new(true);
     public ClampedFloatParameter extraRotation = new(0,0,360);
     
